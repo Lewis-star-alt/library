@@ -65,5 +65,5 @@ async def get_books(
         db: SessionDep,
         pag: PaginationDep
 ):
-    books = await get_books_db(db, pag.page, pag.size)
+    books = await get_books_db(db, pag)
     return books

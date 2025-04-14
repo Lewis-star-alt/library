@@ -7,8 +7,9 @@ class UserCreateS(BaseModel):
     email: EmailStr
     password: str
 
+
     @field_validator('password')
-    def validate_password(self, v):
+    def validate_password(cls, v):
         if len(v) < 8:
             raise ValueError("Password must be at least 8 characters")
         if not any(c.isupper() for c in v):
@@ -60,5 +61,5 @@ class CommentS(BookCreateS):
 
 # pagination
 class Pagination(BaseModel):
-    size: int = Field(5)
-    page: int = Field(0)
+    size: int = Field(5, description="Number of page")
+    page: int = Field(1, description="Number of notes on page")
